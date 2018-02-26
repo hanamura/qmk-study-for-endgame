@@ -17,8 +17,8 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = KEYMAP( /* Base */
-  KC_A,  KC_1,  KC_H, \
-    KC_TAB,  KC_SPC   \
+  LGUI(LSFT(KC_3)), LGUI(LSFT(KC_4)), \
+  LGUI(LSFT(LCTL(KC_4))), KC_ESC  \
 ),
 };
 

@@ -23,12 +23,12 @@
 // The first section contains all of the arguments
 // The second converts the arguments into a two-dimensional array
 #define KEYMAP( \
-    k00, k01, k02, \
-      k10,  k11   \
+    k00, k01, \
+    k10, k11  \
 ) \
 { \
-    { k00, k01,   k02 }, \
-    { k10, KC_NO, k11 }, \
+    { k00, k01 }, \
+    { k10, k11 }, \
 }
 
 #endif
