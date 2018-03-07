@@ -7,9 +7,6 @@
 #include "split_util.h"
 #endif
 #include "LUFA/Drivers/Peripheral/TWI.h"
-#ifdef AUDIO_ENABLE
-  #include "audio.h"
-#endif
 #ifdef SSD1306OLED
   #include "ssd1306.h"
 #endif
@@ -162,15 +159,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       )
 };
 
-#ifdef AUDIO_ENABLE
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
-float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
-float tone_plover[][2]     = SONG(PLOVER_SOUND);
-float tone_plover_gb[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
-#endif
-
 bool TOG_STATUS = false;
 int RGB_current_mode;
 
@@ -194,27 +182,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_qwerty);
-        #endif
         persistent_default_layer_set(1UL<<_QWERTY);
       }
       return false;
       break;
     case COLEMAK:
       if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_colemak);
-        #endif
         persistent_default_layer_set(1UL<<_COLEMAK);
       }
       return false;
       break;
     case DVORAK:
       if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_dvorak);
-        #endif
         persistent_default_layer_set(1UL<<_DVORAK);
       }
       return false;
@@ -322,9 +301,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void matrix_init_user(void) {
-    #ifdef AUDIO_ENABLE
-        startup_user();
-    #endif
     #ifdef RGBLIGHT_ENABLE
       RGB_current_mode = rgblight_config.mode;
     #endif
@@ -334,33 +310,6 @@ void matrix_init_user(void) {
         iota_gfx_init(!has_usb());   // turns on the display
     #endif
 }
-
-
-#ifdef AUDIO_ENABLE
-
-void startup_user()
-{
-    _delay_ms(20); // gets rid of tick
-}
-
-void shutdown_user()
-{
-    _delay_ms(150);
-    stop_all_notes();
-}
-
-void music_on_user(void)
-{
-    music_scale_user();
-}
-
-void music_scale_user(void)
-{
-    PLAY_SONG(music_scale);
-}
-
-#endif
-
 
 //SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
 #ifdef SSD1306OLED
