@@ -17,6 +17,64 @@ extern keymap_config_t keymap_config;
 extern rgblight_config_t rgblight_config;
 #endif
 
+void dance_l_finished(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    register_code(KC_LSFT);
+    register_code(KC_9);
+  } else if (state->count == 2) {
+    register_code(KC_LBRC);
+  } else {
+    register_code(KC_LSFT);
+    register_code(KC_LBRC);
+  }
+}
+
+void dance_l_reset(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    unregister_code(KC_LSFT);
+    unregister_code(KC_9);
+  } else if (state->count == 2) {
+    unregister_code(KC_LBRC);
+  } else {
+    unregister_code(KC_LSFT);
+    unregister_code(KC_LBRC);
+  }
+}
+
+void dance_r_finished(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    register_code(KC_LSFT);
+    register_code(KC_0);
+  } else if (state->count == 2) {
+    register_code(KC_RBRC);
+  } else {
+    register_code(KC_LSFT);
+    register_code(KC_RBRC);
+  }
+}
+
+void dance_r_reset(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    unregister_code(KC_LSFT);
+    unregister_code(KC_0);
+  } else if (state->count == 2) {
+    unregister_code(KC_RBRC);
+  } else {
+    unregister_code(KC_LSFT);
+    unregister_code(KC_RBRC);
+  }
+}
+
+enum {
+  TD_L = 0,
+  TD_R
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_l_finished, dance_l_reset),
+  [TD_R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_r_finished, dance_r_reset),
+};
+
 extern uint8_t is_master;
 
 #define _QWERTY 0
@@ -57,6 +115,10 @@ enum custom_keycodes {
 #define PANE_PREV LGUI(KC_LBRC)
 #define PANE_NEXT LGUI(KC_RBRC)
 
+// tap dances
+#define TDL TD(TD_L)
+#define TDR TD(TD_R)
+
 // utils
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
@@ -71,14 +133,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = KEYMAP( \
       KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, _______, _______, KC_LBRC, KC_RBRC, _______, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     KC_LBRC, KC_RBRC, _______, \
       _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR, KC_RCBR, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
       ),
 
   [_RAISE] = KEYMAP( \
       KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, _______, _______, KC_LBRC, KC_RBRC, _______, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     KC_LBRC, KC_RBRC, _______, \
       _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR, KC_RCBR, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
       ),
