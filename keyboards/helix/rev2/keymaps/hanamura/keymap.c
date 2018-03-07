@@ -30,11 +30,14 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   BACKLIT,
-  EISU,
-  KANA,
   RGBRST
 };
 
+// mod taps
+#define CMD_EN MT(MOD_LGUI,KC_LANG2)
+#define CMD_JA MT(MOD_RGUI,KC_LANG1)
+
+// utils
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
@@ -52,10 +55,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = KEYMAP( \
-      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
-      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-      ADJUST,  KC_ESC,  KC_LALT, KC_LGUI, EISU,    LOWER,   KC_SPC,  KC_SPC,  RAISE,   KANA,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+      KC_TAB,  KC_Q,   KC_W,    KC_E,    KC_R,   KC_T,                  KC_Y,  KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC, \
+      KC_LCTL, KC_A,   KC_S,    KC_D,    KC_F,   KC_G,                  KC_H,  KC_J,   KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+      KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,   KC_B,                  KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
+      ADJUST,  KC_ESC, KC_LALT, KC_LGUI, CMD_EN, LOWER, KC_SPC, KC_SPC, RAISE, CMD_JA, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
       ),
 
   /* Lower
@@ -203,30 +206,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           RGB_current_mode = rgblight_config.mode;
         }
       #endif
-      return false;
-      break;
-    case EISU:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG2);
-        }else{
-          SEND_STRING(SS_LALT("`"));
-        }
-      } else {
-        unregister_code(KC_LANG2);
-      }
-      return false;
-      break;
-    case KANA:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
-          register_code(KC_LANG1);
-        }else{
-          SEND_STRING(SS_LALT("`"));
-        }
-      } else {
-        unregister_code(KC_LANG1);
-      }
       return false;
       break;
     case RGBRST:
