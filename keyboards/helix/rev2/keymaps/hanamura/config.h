@@ -35,11 +35,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-//#define SSD1306OLED
+#define SSD1306OLED
 
 /* Select rows configuration */
 // Rows are 4 or 5
-#define HELIX_ROWS 5
+#define HELIX_ROWS 4
 
 /* key matrix size */
 // Rows are doubled-up
@@ -64,8 +64,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 6
-#define RGBLIGHT_LIMIT_VAL 255
+#define RGBLED_NUM 25
+#define RGBLIGHT_LIMIT_VAL 130
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
 #define RGBLIGHT_VAL_STEP 17
