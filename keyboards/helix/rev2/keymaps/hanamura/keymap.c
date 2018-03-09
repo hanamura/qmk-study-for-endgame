@@ -328,11 +328,9 @@ void matrix_update(struct CharacterMatrix *dest,
 #define L_BASE 0
 #define L_LOWER 8
 #define L_RAISE 16
-#define L_FNLAYER 64
-#define L_NUMLAY 128
-#define L_NLOWER 136
-#define L_NFNLAYER 192
-#define L_MOUSECURSOR 256
+#define L_NUMPAD 32
+#define L_ARROW 64
+#define L_SARROW 128
 #define L_ADJUST 65536
 #define L_ADJUST_TRI 65560
 
@@ -376,6 +374,15 @@ void render_status(struct CharacterMatrix *matrix) {
            break;
         case L_LOWER:
            matrix_write_P(matrix, PSTR("Lower"));
+           break;
+        case L_NUMPAD:
+           matrix_write_P(matrix, PSTR("Numpad"));
+           break;
+        case L_ARROW:
+           matrix_write_P(matrix, PSTR("Arrow"));
+           break;
+        case L_SARROW:
+           matrix_write_P(matrix, PSTR("Shift Arrow"));
            break;
         case L_ADJUST:
         case L_ADJUST_TRI:
