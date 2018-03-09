@@ -81,6 +81,8 @@ extern uint8_t is_master;
 #define _LOWER 3
 #define _RAISE 4
 #define _NUMPAD 5
+#define _ARROW 6
+#define _SARROW 7
 #define _ADJUST 16
 
 enum custom_keycodes {
@@ -124,16 +126,20 @@ enum custom_keycodes {
 // layers
 #define NUMPAD_Z LT(_NUMPAD,KC_Z)
 
+#define NUMPAD_F LT(_NUMPAD,KC_F)
+#define ARROW_D LT(_ARROW,KC_D)
+#define SARROW_S LT(_SARROW,KC_S)
+
 // utils
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = KEYMAP( \
-      KC_TAB,  KC_Q,     KC_W,    KC_E,    KC_R,   KC_T,                  KC_Y,  KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC, \
-      CTL_ESC, KC_A,     KC_S,    KC_D,    KC_F,   KC_G,                  KC_H,  KC_J,   KC_K,    KC_L,    KC_SCLN, KC_ENT,  \
-      SFT_TAB, NUMPAD_Z, KC_X,    KC_C,    KC_V,   KC_B,                  KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-      M_CAG,   _______,  KC_LALT, KC_LALT, CMD_EN, LOWER, NUMPAD, KC_SPC, RAISE, CMD_JA, _______, _______, _______, _______  \
+      KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,     KC_T,                  KC_Y,  KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC, \
+      CTL_ESC, KC_A,     SARROW_S, ARROW_D, NUMPAD_F, KC_G,                  KC_H,  KC_J,   KC_K,    KC_L,    KC_SCLN, KC_ENT,  \
+      SFT_TAB, NUMPAD_Z, KC_X,     KC_C,    KC_V,     KC_B,                  KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+      M_CAG,   _______,  KC_LALT,  KC_LALT, CMD_EN,   LOWER, NUMPAD, KC_SPC, RAISE, CMD_JA, _______, _______, _______, _______  \
       ),
 
   [_LOWER] = KEYMAP( \
@@ -151,10 +157,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_NUMPAD] = KEYMAP( \
-      _______, _______, _______, KC_UP,   _______, _______,                   KC_PPLS, KC_P7,   KC_P8, KC_P9,   KC_P0,   _______, \
-      _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,                   KC_PMNS, KC_P4,   KC_P5, KC_P6,   KC_PAST, _______, \
+      _______, _______, _______, _______, _______, _______,                   KC_PPLS, KC_P7,   KC_P8, KC_P9,   KC_P0,   _______, \
+      _______, _______, _______, _______, _______, _______,                   KC_PMNS, KC_P4,   KC_P5, KC_P6,   KC_PAST, _______, \
       _______, _______, _______, _______, _______, KC_PPLS,                   KC_PEQL, KC_P1,   KC_P2, KC_P3,   KC_PSLS, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_P0, KC_PDOT, KC_PCMM, _______  \
+      ),
+
+  [_ARROW] = KEYMAP( \
+      _______, _______, _______, _______, _______, _______,                   _______,       _______, KC_UP,   _______, _______,       _______, \
+      _______, _______, _______, _______, _______, _______,                   LALT(KC_LEFT), KC_LEFT, KC_DOWN, KC_RGHT, LALT(KC_RGHT), _______, \
+      _______, _______, _______, _______, _______, _______,                   _______,       _______, _______, _______, _______,       _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______,       _______, _______, _______, _______,       _______  \
+      ),
+
+  [_SARROW] = KEYMAP( \
+      _______, _______, _______, _______, _______, _______,                   _______,             _______,       LSFT(KC_UP),   _______,       _______, _______, \
+      _______, _______, _______, _______, _______, _______,                   LALT(LSFT(KC_LEFT)), LSFT(KC_LEFT), LSFT(KC_DOWN), LSFT(KC_RGHT), LALT(LSFT(KC_RGHT)), _______, \
+      _______, _______, _______, _______, _______, _______,                   _______,             _______,       _______,       _______,       _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,       _______,       _______,       _______, _______  \
       ),
 
   [_ADJUST] = KEYMAP( \
