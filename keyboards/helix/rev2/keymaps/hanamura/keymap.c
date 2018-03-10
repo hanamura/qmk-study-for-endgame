@@ -349,7 +349,7 @@ void render_status(struct CharacterMatrix *matrix) {
   matrix_write_P(matrix, PSTR("\nLayer: "));
   switch (layer_state) {
     case L_BASE:
-      matrix_write_P(matrix, PSTR("Default"));
+      matrix_write_P(matrix, PSTR("Qwerty"));
       break;
     case L_RAISE:
       matrix_write_P(matrix, PSTR("Raise"));
