@@ -83,6 +83,7 @@ extern uint8_t is_master;
 #define _NUMPAD 5
 #define _ARROW 6
 #define _SARROW 7
+#define _BACKLIT 8
 #define _ADJUST 16
 
 enum custom_keycodes {
@@ -175,9 +176,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,       _______,       _______,       _______, _______  \
       ),
 
+  [_BACKLIT] = KEYMAP( \
+      _______, _______, _______,  _______,  _______, _______,                   _______, _______,  _______, _______, _______, _______, \
+      _______, RGB_M_X, RGB_M_SN, RGB_M_R,  RGB_M_P, RGBRST,                    RGB_TOG, RGB_MOD,  RGB_HUI, RGB_SAI, RGB_VAI, _______, \
+      _______, RGB_M_G, RGB_M_K,  RGB_M_SW, RGB_M_B, _______,                   _______, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, \
+      _______, _______, _______,  _______,  _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______  \
+      ),
+
   [_ADJUST] = KEYMAP( \
-      _______, _______, _______, KC_PGUP, KC_VOLU, FO_MENU,                     FO_TOOL,   _______, _______, _______, _______, _______, \
-      _______, _______, _______, KC_PGDN, KC_VOLD, TAB_PREV,                    TAB_NEXT,  _______, _______, _______, _______, _______, \
+      _______, _______, _______, KC_PGUP, KC_VOLU, FO_MENU,                     FO_TOOL,   BACKLIT, _______, _______, _______, _______, \
+      _______, _______, _______, KC_PGDN, KC_VOLD, TAB_PREV,                    TAB_NEXT,  QWERTY,  _______, _______, _______, _______, \
       _______, RESET,   _______, _______, _______, PANE_PREV,                   PANE_NEXT, _______, _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______,   _______, _______, _______,   _______, _______, _______, _______, _______  \
       )
@@ -193,9 +201,6 @@ void persistent_default_layer_set(uint16_t default_layer) {
 
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
-    #ifdef RGBLIGHT_ENABLE
-      //rgblight_mode(RGB_current_mode);
-    #endif
     layer_on(layer3);
   } else {
     layer_off(layer3);
@@ -215,16 +220,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (TOG_STATUS) {
         } else {
           TOG_STATUS = !TOG_STATUS;
-#ifdef RGBLIGHT_ENABLE
-          //rgblight_mode(16);
-#endif
         }
         layer_on(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       } else {
-#ifdef RGBLIGHT_ENABLE
-        //rgblight_mode(RGB_current_mode);
-#endif
         TOG_STATUS = false;
         layer_off(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -236,16 +235,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (TOG_STATUS) {
         } else {
           TOG_STATUS = !TOG_STATUS;
-#ifdef RGBLIGHT_ENABLE
-          //rgblight_mode(15);
-#endif
         }
         layer_on(_RAISE);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
       } else {
-#ifdef RGBLIGHT_ENABLE
-        //rgblight_mode(RGB_current_mode);
-#endif
         layer_off(_RAISE);
         TOG_STATUS = false;
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -260,6 +253,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case BACKLIT:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_BACKLIT);
+      }
+      return false;
+      break;
     case ADJUST:
       if (record->event.pressed) {
         layer_on(_ADJUST);
@@ -268,24 +267,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case RGB_MOD:
-#ifdef RGBLIGHT_ENABLE
-      if (record->event.pressed) {
-        rgblight_mode(RGB_current_mode);
-        rgblight_step();
-        RGB_current_mode = rgblight_config.mode;
-      }
-#endif
-      return false;
-      break;
     case RGBRST:
-#ifdef RGBLIGHT_ENABLE
-      if (record->event.pressed) {
-        eeconfig_update_rgblight_default();
-        rgblight_enable();
-        RGB_current_mode = rgblight_config.mode;
-      }
-#endif
+      #ifdef RGBLIGHT_ENABLE
+        if (record->event.pressed) {
+          eeconfig_update_rgblight_default();
+          rgblight_enable();
+          RGB_current_mode = rgblight_config.mode;
+        }
+      #endif
       break;
   }
   return true;
