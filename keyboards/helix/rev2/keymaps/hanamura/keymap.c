@@ -81,8 +81,8 @@ extern uint8_t is_master;
 #define _LOWER 3
 #define _RAISE 4
 #define _NUMPAD 5
-#define _ARROW 6
-#define _SARROW 7
+#define _TEXT_WALK 6
+#define _TEXT_SELECT 7
 #define _BACKLIT 8
 #define _ADJUST 16
 
@@ -126,8 +126,8 @@ enum custom_keycodes {
 
 // layers
 #define NUMPAD_F LT(_NUMPAD,KC_F)
-#define ARROW_D LT(_ARROW,KC_D)
-#define SARROW_S LT(_SARROW,KC_S)
+#define TEXT_WALK_D LT(_TEXT_WALK,KC_D)
+#define TEXT_SELECT_S LT(_TEXT_SELECT,KC_S)
 
 // utils
 #define _______ KC_TRNS
@@ -135,10 +135,10 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = KEYMAP( \
-      KC_TAB,  KC_Q,    KC_W,     KC_E,    KC_R,     KC_T,                   KC_Y,  KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC, \
-      CTL_ESC, KC_A,    SARROW_S, ARROW_D, NUMPAD_F, KC_G,                   KC_H,  KC_J,   KC_K,    KC_L,    KC_SCLN, KC_ENT,  \
-      SFT_TAB, KC_Z,    KC_X,     KC_C,    KC_V,     KC_B,                   KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, LSFT(KC_TAB), \
-      M_CAG,   _______, KC_LALT,  KC_LALT, CMD_EN,   LOWER, KC_LSFT, KC_SPC, RAISE, CMD_JA, _______, _______, _______, _______  \
+      KC_TAB,  KC_Q,    KC_W,          KC_E,        KC_R,     KC_T,                   KC_Y,  KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,      \
+      CTL_ESC, KC_A,    TEXT_SELECT_S, TEXT_WALK_D, NUMPAD_F, KC_G,                   KC_H,  KC_J,   KC_K,    KC_L,    KC_SCLN, KC_ENT,       \
+      SFT_TAB, KC_Z,    KC_X,          KC_C,        KC_V,     KC_B,                   KC_N,  KC_M,   KC_COMM, KC_DOT,  KC_SLSH, LSFT(KC_TAB), \
+      M_CAG,   _______, KC_LALT,       KC_LALT,     CMD_EN,   LOWER, KC_LSFT, KC_SPC, RAISE, CMD_JA, _______, _______, _______, _______       \
       ),
 
   [_LOWER] = KEYMAP( \
@@ -162,14 +162,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
       ),
 
-  [_ARROW] = KEYMAP( \
-      _______, _______, _______, _______, _______, LGUI(KC_LEFT),                   LGUI(KC_LEFT), LGUI(KC_DOWN), LGUI(KC_UP), LGUI(KC_RGHT), LGUI(KC_RGHT),       _______, \
+  [_TEXT_WALK] = KEYMAP( \
+      _______, _______, _______, _______, _______, LGUI(KC_LEFT),                   LGUI(KC_LEFT), LGUI(KC_DOWN), LGUI(KC_UP), LGUI(KC_RGHT), LGUI(KC_RGHT), _______, \
       _______, _______, _______, _______, _______, LALT(KC_LEFT),                   KC_LEFT,       KC_DOWN,       KC_UP,       KC_RGHT,       LALT(KC_RGHT), _______, \
       _______, _______, _______, _______, _______, XXXXXXX,                         LGUI(KC_Z),    LGUI(KC_X),    LGUI(KC_C),  LGUI(KC_V),    XXXXXXX,       _______, \
       _______, _______, _______, _______, _______, _______,       _______, _______, _______,       _______,       _______,     _______,       _______,       _______  \
       ),
 
-  [_SARROW] = KEYMAP( \
+  [_TEXT_SELECT] = KEYMAP( \
       _______, _______, _______, _______, _______, LSFT(LGUI(KC_LEFT)),             LSFT(LGUI(KC_LEFT)), LSFT(LGUI(KC_DOWN)), LSFT(LGUI(KC_UP)), LSFT(LGUI(KC_RGHT)), LSFT(LGUI(KC_RGHT)), _______, \
       _______, _______, _______, _______, _______, LSFT(LALT(KC_LEFT)),             LSFT(KC_LEFT),       LSFT(KC_DOWN),       LSFT(KC_UP),       LSFT(KC_RGHT),       LSFT(LALT(KC_RGHT)), _______, \
       _______, _______, _______, _______, _______, XXXXXXX,                         LGUI(KC_Z),          LGUI(KC_X),          LGUI(KC_C),        LGUI(KC_V),          XXXXXXX,             _______, \
@@ -307,8 +307,8 @@ void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *s
 #define L_LOWER 8
 #define L_RAISE 16
 #define L_NUMPAD 32
-#define L_ARROW 64
-#define L_SARROW 128
+#define L_TEXT_WALK 64
+#define L_TEXT_SELECT 128
 #define L_ADJUST 65536
 #define L_ADJUST_TRI 65560
 
@@ -349,11 +349,11 @@ void render_status(struct CharacterMatrix *matrix) {
     case L_NUMPAD:
       matrix_write_P(matrix, PSTR("Numpad"));
       break;
-    case L_ARROW:
-      matrix_write_P(matrix, PSTR("Arrow"));
+    case L_TEXT_WALK:
+      matrix_write_P(matrix, PSTR("Text Walk"));
       break;
-    case L_SARROW:
-      matrix_write_P(matrix, PSTR("Shift Arrow"));
+    case L_TEXT_SELECT:
+      matrix_write_P(matrix, PSTR("Text Select"));
       break;
     case L_ADJUST:
     case L_ADJUST_TRI:
