@@ -90,8 +90,6 @@ enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
-  NUMPAD,
-  ADJUST,
   BACKLIT,
   RGBRST
 };
@@ -245,25 +243,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case NUMPAD:
-      if (record->event.pressed) {
-        layer_on(_NUMPAD);
-      } else {
-        layer_off(_NUMPAD);
-      }
-      return false;
-      break;
     case BACKLIT:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_BACKLIT);
-      }
-      return false;
-      break;
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_ADJUST);
-      } else {
-        layer_off(_ADJUST);
       }
       return false;
       break;
