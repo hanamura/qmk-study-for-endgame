@@ -110,12 +110,12 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 extern uint8_t is_master;
 
 #define _QWERTY 0
-#define _LOWER 3
-#define _RAISE 4
-#define _NUMPAD 5
-#define _TEXT_WALK 6
-#define _TEXT_SELECT 7
-#define _BACKLIT 8
+#define _TEXT_WALK 1
+#define _TEXT_SELECT 2
+#define _NUMPAD 3
+#define _LOWER 4
+#define _RAISE 5
+#define _BACKLIT 6
 #define _ADJUST 16
 
 enum custom_keycodes {
@@ -167,27 +167,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       M_CAG,   _______, _______,       KC_LALT,     CMD_EN,   LOWER, KC_LSFT, KC_SPC, RAISE, MT(MOD_LGUI|MOD_LSFT, KC_LANG1), LGUI(KC_LALT), _______, _______, _______       \
       ),
 
-  [_LOWER] = KEYMAP( \
-      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), _______, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
-      ),
-
-  [_RAISE] = KEYMAP( \
-      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), _______, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
-      ),
-
-  [_NUMPAD] = KEYMAP( \
-      _______, _______, _______, _______, _______, _______,                   KC_PPLS, KC_P7,   KC_P8,   KC_P9,   KC_P0,   _______, \
-      _______, _______, _______, _______, _______, _______,                   KC_PMNS, KC_P4,   KC_P5,   KC_P6,   KC_PAST, _______, \
-      _______, _______, _______, _______, _______, _______,                   KC_PEQL, KC_P1,   KC_P2,   KC_P3,   KC_PSLS, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
-      ),
-
   [_TEXT_WALK] = KEYMAP( \
       _______, _______, _______, _______, _______, LGUI(KC_LEFT),                   LGUI(KC_LEFT), LGUI(KC_DOWN), LGUI(KC_UP), LGUI(KC_RGHT), LGUI(KC_RGHT), _______, \
       _______, _______, _______, _______, _______, LALT(KC_LEFT),                   KC_LEFT,       KC_DOWN,       KC_UP,       KC_RGHT,       LALT(KC_RGHT), _______, \
@@ -200,6 +179,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, LSFT(LALT(KC_LEFT)),             LSFT(KC_LEFT),       LSFT(KC_DOWN),       LSFT(KC_UP),       LSFT(KC_RGHT),       LSFT(LALT(KC_RGHT)), _______, \
       _______, _______, _______, _______, _______, XXXXXXX,                         LGUI(KC_Z),          LGUI(KC_X),          LGUI(KC_C),        LGUI(KC_V),          XXXXXXX,             _______, \
       _______, _______, _______, _______, _______, _______,       _______, _______, _______,             _______,             _______,           _______,             _______,             _______  \
+      ),
+
+  [_NUMPAD] = KEYMAP( \
+      _______, _______, _______, _______, _______, _______,                   KC_PPLS, KC_P7,   KC_P8,   KC_P9,   KC_P0,   _______, \
+      _______, _______, _______, _______, _______, _______,                   KC_PMNS, KC_P4,   KC_P5,   KC_P6,   KC_PAST, _______, \
+      _______, _______, _______, _______, _______, _______,                   KC_PEQL, KC_P1,   KC_P2,   KC_P3,   KC_PSLS, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+      ),
+
+  [_LOWER] = KEYMAP( \
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), _______, _______, \
+      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
+      ),
+
+  [_RAISE] = KEYMAP( \
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), _______, _______, \
+      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
       ),
 
   [_BACKLIT] = KEYMAP( \
@@ -314,13 +314,14 @@ void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *s
 }
 
 #define L_BASE 0
-#define L_LOWER 8
-#define L_RAISE 16
-#define L_NUMPAD 32
-#define L_TEXT_WALK 64
-#define L_TEXT_SELECT 128
+#define L_TEXT_WALK 2
+#define L_TEXT_SELECT 4
+#define L_TEXT_WALK_SELECT 6
+#define L_NUMPAD 8
+#define L_LOWER 16
+#define L_RAISE 32
 #define L_ADJUST 65536
-#define L_ADJUST_TRI 65560
+#define L_ADJUST_TRI 65584
 
 static void render_logo(struct CharacterMatrix *matrix) {
   static char logo[]={
@@ -350,20 +351,21 @@ void render_status(struct CharacterMatrix *matrix) {
     case L_BASE:
       matrix_write_P(matrix, PSTR("Qwerty"));
       break;
-    case L_RAISE:
-      matrix_write_P(matrix, PSTR("Raise"));
-      break;
-    case L_LOWER:
-      matrix_write_P(matrix, PSTR("Lower"));
-      break;
-    case L_NUMPAD:
-      matrix_write_P(matrix, PSTR("Numpad"));
-      break;
     case L_TEXT_WALK:
       matrix_write_P(matrix, PSTR("Text Walk"));
       break;
     case L_TEXT_SELECT:
+    case L_TEXT_WALK_SELECT:
       matrix_write_P(matrix, PSTR("Text Select"));
+      break;
+    case L_NUMPAD:
+      matrix_write_P(matrix, PSTR("Numpad"));
+      break;
+    case L_LOWER:
+      matrix_write_P(matrix, PSTR("Lower"));
+      break;
+    case L_RAISE:
+      matrix_write_P(matrix, PSTR("Raise"));
       break;
     case L_ADJUST:
     case L_ADJUST_TRI:
