@@ -65,14 +65,46 @@ void dance_r_reset(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
+void dance_lr_finished(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    register_code(KC_LSFT);
+    register_code(KC_9);
+    register_code(KC_0);
+  } else if (state->count == 2) {
+    register_code(KC_LBRC);
+    register_code(KC_RBRC);
+  } else {
+    register_code(KC_LSFT);
+    register_code(KC_LBRC);
+    register_code(KC_RBRC);
+  }
+}
+
+void dance_lr_reset(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    unregister_code(KC_LSFT);
+    unregister_code(KC_9);
+    unregister_code(KC_0);
+  } else if (state->count == 2) {
+    unregister_code(KC_LBRC);
+    unregister_code(KC_RBRC);
+  } else {
+    unregister_code(KC_LSFT);
+    unregister_code(KC_LBRC);
+    unregister_code(KC_RBRC);
+  }
+}
+
 enum {
   TD_L = 0,
-  TD_R
+  TD_R,
+  TD_LR
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_l_finished, dance_l_reset),
   [TD_R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_r_finished, dance_r_reset),
+  [TD_LR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_lr_finished, dance_lr_reset),
 };
 
 extern uint8_t is_master;
@@ -140,17 +172,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_LOWER] = KEYMAP( \
-      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     KC_LBRC, KC_RBRC, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR, KC_RCBR, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,   KC_RPRN, KC_BSLS, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     TD(TD_LR), KC_RBRC, _______, \
+      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR,   KC_RCBR, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______  \
       ),
 
   [_RAISE] = KEYMAP( \
-      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     KC_LBRC, KC_RBRC, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR, KC_RCBR, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,   KC_RPRN, KC_BSLS, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     TD(TD_LR), KC_RBRC, _______, \
+      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR,   KC_RCBR, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______  \
       ),
 
   [_NUMPAD] = KEYMAP( \
