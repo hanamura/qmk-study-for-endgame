@@ -150,10 +150,6 @@ enum custom_keycodes {
 #define PANE_PREV LGUI(KC_LBRC)
 #define PANE_NEXT LGUI(KC_RBRC)
 
-// tap dances
-#define TDL TD(TD_L)
-#define TDR TD(TD_R)
-
 // layers
 #define NUMPAD_F LT(_NUMPAD,KC_F)
 #define TEXT_WALK_D LT(_TEXT_WALK,KC_D)
@@ -172,16 +168,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_LOWER] = KEYMAP( \
-      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,   KC_RPRN, KC_BSLS, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     TD(TD_LR), KC_RBRC, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR,   KC_RCBR, _______, \
+      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  KC_LPRN,   KC_RPRN, KC_BSLS, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), KC_RBRC, _______, \
+      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  KC_LCBR,   KC_RCBR, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______  \
       ),
 
   [_RAISE] = KEYMAP( \
-      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,   KC_RPRN, KC_BSLS, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TDL,     TDR,     TD(TD_LR), KC_RBRC, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,  KC_PIPE, KC_LCBR,   KC_RCBR, _______, \
+      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  KC_LPRN,   KC_RPRN, KC_BSLS, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), KC_RBRC, _______, \
+      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  KC_LCBR,   KC_RCBR, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______  \
       ),
 
