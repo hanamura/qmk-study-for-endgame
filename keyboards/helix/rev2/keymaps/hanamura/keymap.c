@@ -128,7 +128,6 @@ enum custom_keycodes {
 
 // mod taps
 #define CMD_EN MT(MOD_LGUI,KC_LANG2)
-#define CMD_JA MT(MOD_RGUI,KC_LANG1)
 #define CTL_ESC MT(MOD_LCTL,KC_ESC)
 #define SFT_TAB MT(MOD_LSFT,KC_TAB)
 
