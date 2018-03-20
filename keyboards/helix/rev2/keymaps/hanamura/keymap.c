@@ -169,14 +169,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_TEXT_WALK] = KEYMAP( \
       _______, _______, _______, _______, _______, LGUI(KC_LEFT),                   LGUI(KC_LEFT), LGUI(KC_DOWN), LGUI(KC_UP), LGUI(KC_RGHT), LGUI(KC_RGHT), _______, \
       _______, _______, _______, _______, _______, LALT(KC_LEFT),                   KC_LEFT,       KC_DOWN,       KC_UP,       KC_RGHT,       LALT(KC_RGHT), _______, \
-      _______, _______, _______, _______, _______, XXXXXXX,                         LGUI(KC_Z),    LGUI(KC_X),    LGUI(KC_C),  LGUI(KC_V),    XXXXXXX,       _______, \
+      _______, _______, _______, _______, _______, XXXXXXX,                         LCTL(KC_K),    LGUI(KC_X),    LGUI(KC_C),  LGUI(KC_V),    XXXXXXX,       _______, \
       _______, _______, _______, _______, _______, _______,       _______, _______, _______,       _______,       _______,     _______,       _______,       _______  \
       ),
 
   [_TEXT_SELECT] = KEYMAP( \
       _______, _______, _______, _______, _______, LSFT(LGUI(KC_LEFT)),             LSFT(LGUI(KC_LEFT)), LSFT(LGUI(KC_DOWN)), LSFT(LGUI(KC_UP)), LSFT(LGUI(KC_RGHT)), LSFT(LGUI(KC_RGHT)), _______, \
       _______, _______, _______, _______, _______, LSFT(LALT(KC_LEFT)),             LSFT(KC_LEFT),       LSFT(KC_DOWN),       LSFT(KC_UP),       LSFT(KC_RGHT),       LSFT(LALT(KC_RGHT)), _______, \
-      _______, _______, _______, _______, _______, XXXXXXX,                         LGUI(KC_Z),          LGUI(KC_X),          LGUI(KC_C),        LGUI(KC_V),          XXXXXXX,             _______, \
+      _______, _______, _______, _______, _______, XXXXXXX,                         LCTL(KC_K),          LGUI(KC_X),          LGUI(KC_C),        LGUI(KC_V),          XXXXXXX,             _______, \
       _______, _______, _______, _______, _______, _______,       _______, _______, _______,             _______,             _______,           _______,             _______,             _______  \
       ),
 
