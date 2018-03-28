@@ -73,7 +73,7 @@
   * [Customizing Functionality](custom_quantum_functions.md)
   * [Documentation Best Practices](documentation_best_practices.md)
   * [Documentation Templates](documentation_templates.md)
-  * [Glossary](glossary.md)
+  * [Glossary](reference_glossary.md)
   * [Keymap Overview](keymap.md)
   * [Unit Testing](unit_testing.md)
 
@@ -87,3 +87,12 @@
 
 * Other Topics
   * [Using Eclipse with QMK](eclipse.md)
+
+* QMK Internals (In Progress)
+  * [Defines](internals_defines.md)
+  * [Input Callback Reg](internals_input_callback_reg.md)
+  * [Midi Device](internals_midi_device.md)
+  * [Midi Device Setup Process](internals_midi_device_setup_process.md)
+  * [Midi Util](internals_midi_util.md)
+  * [Send Functions](internals_send_functions.md)
+  * [Sysex Tools](internals_sysex_tools.md)
