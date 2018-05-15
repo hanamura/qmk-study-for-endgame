@@ -3,8 +3,10 @@
 
 #include "config_common.h"
 
+#define USE_I2C
+
 #define EE_HANDS
+
 #define TAPPING_TERM 150
-#define USE_SERIAL
 
 #endif
