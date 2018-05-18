@@ -114,10 +114,10 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
-      KC_Q,        KC_W,             KC_E,           KC_R,          KC_T,   KC_Y, KC_U, KC_I,    KC_O,   KC_P,           \
-      CTL_T(KC_A), LT(_SELECT,KC_S), LT(_WALK,KC_D), LT(_NUM,KC_F), KC_G,   KC_H, KC_J, KC_K,    KC_L,   CTL_T(KC_SCLN), \
-      SFT_T(KC_Z), LCAG_T(KC_X),     KC_C,           KC_V,          KC_B,   KC_N, KC_M, KC_COMM, KC_DOT, SFT_T(KC_SLSH), \
-      MT(MOD_LGUI,KC_LANG2), LOWER, KC_ENT,   KC_SPC, RAISE, MT(MOD_LALT,KC_LANG1) \
+      KC_Q,        KC_W,             KC_E,           KC_R,          KC_T,   KC_Y, KC_U,         KC_I,    KC_O,   KC_P,           \
+      CTL_T(KC_A), LT(_SELECT,KC_S), LT(_WALK,KC_D), LT(_NUM,KC_F), KC_G,   KC_H, KC_J,         KC_K,    KC_L,   CTL_T(KC_ENT), \
+      SFT_T(KC_Z), LCAG_T(KC_X),     KC_C,           LALT_T(KC_V),  KC_B,   KC_N, LALT_T(KC_M), KC_COMM, KC_DOT, SFT_T(KC_BSPC), \
+      MT(MOD_LGUI,KC_LANG2), LOWER, KC_TAB,   KC_SPC, RAISE, MT(MOD_LGUI,KC_LANG1) \
       ),
 
   [_WALK] = LAYOUT( \
@@ -143,16 +143,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
       KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   KC_CIRC, KC_AMPR,       KC_ASTR,      KC_BSLS,     KC_BSPC, \
-      KC_ESC,  KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,   KC_MINS, TD(TD_LEFT),   TD(TD_RIGHT), TD(TD_BOTH), KC_ENT,  \
-      KC_TAB,  _______, _______, _______, KC_PLUS,   KC_EQL,  LALT(KC_SCLN), KC_PIPE,      _______,     KC_TAB,  \
-      _______, _______, KC_BSPC,   KC_TAB, _______, _______ \
+      KC_ESC,  KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,   KC_MINS, TD(TD_LEFT),   TD(TD_RIGHT), TD(TD_BOTH), KC_SCLN,  \
+      KC_TAB,  _______, KC_COLN, KC_SCLN, KC_PLUS,   KC_EQL,  LALT(KC_SCLN), KC_PIPE,      KC_QUES,     KC_SLSH,  \
+      _______, _______, LSFT(KC_TAB),   KC_ESC, _______, _______ \
       ),
 
   [_RAISE] = LAYOUT( \
       KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   KC_CIRC, KC_AMPR,       KC_ASTR,      KC_BSLS,     KC_BSPC, \
-      KC_ESC,  KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,   KC_MINS, TD(TD_LEFT),   TD(TD_RIGHT), TD(TD_BOTH), KC_ENT,  \
-      KC_TAB,  _______, _______, _______, KC_PLUS,   KC_EQL,  LALT(KC_SCLN), KC_PIPE,      _______,     KC_TAB,  \
-      _______, _______, KC_BSPC,   KC_TAB, _______, _______ \
+      KC_ESC,  KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,   KC_MINS, TD(TD_LEFT),   TD(TD_RIGHT), TD(TD_BOTH), KC_SCLN,  \
+      KC_TAB,  _______, KC_COLN, KC_SCLN, KC_PLUS,   KC_EQL,  LALT(KC_SCLN), KC_PIPE,      KC_QUES,     KC_SLSH,  \
+      _______, _______, LSFT(KC_TAB),   KC_ESC, _______, _______ \
       ),
 
   [_ADJUST] =  LAYOUT( \
