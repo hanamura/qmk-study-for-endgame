@@ -112,7 +112,7 @@ extern uint8_t is_master;
 #define _QWERTY 0
 #define _WALK 1
 #define _SELECT 2
-#define _NUMPAD 3
+#define _NUM 3
 #define _LOWER 4
 #define _RAISE 5
 #define _BACKLIT 6
@@ -126,14 +126,13 @@ enum custom_keycodes {
   RGBRST
 };
 
-// utils
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = KEYMAP( \
       KC_TAB,  KC_Q,    KC_W,          KC_E,        KC_R,     KC_T,                   KC_Y,  KC_U,                  KC_I,          KC_O,    KC_P,    KC_BSPC,             \
-      MT(MOD_LCTL,KC_ESC), KC_A,    LT(_SELECT,KC_S), LT(_WALK,KC_D), LT(_NUMPAD,KC_F), KC_G,                   KC_H,  KC_J,                  KC_K,          KC_L,    KC_SCLN, KC_ENT,              \
+      MT(MOD_LCTL,KC_ESC), KC_A,    LT(_SELECT,KC_S), LT(_WALK,KC_D), LT(_NUM,KC_F), KC_G,                   KC_H,  KC_J,                  KC_K,          KC_L,    KC_SCLN, KC_ENT,              \
       MT(MOD_LSFT,KC_TAB), KC_Z,    KC_X,          KC_C,        KC_V,     KC_B,                   KC_N,  KC_M,                  KC_COMM,       KC_DOT,  KC_SLSH, MT(MOD_RSFT,KC_TAB), \
       LCTL(LALT(KC_LGUI)),   _______, _______,       KC_LALT,     MT(MOD_LGUI,KC_LANG2),   LOWER, KC_LSFT, KC_SPC, RAISE, MT(MOD_RGUI,KC_LANG1), LGUI(KC_LALT), _______, _______, _______              \
       ),
@@ -152,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______,             _______, _______, _______,             _______,             _______,           _______,             _______,             _______  \
       ),
 
-  [_NUMPAD] = KEYMAP( \
+  [_NUM] = KEYMAP( \
       _______, _______, _______, _______, _______, _______,                   KC_PPLS, KC_P7,   KC_P8,   KC_P9,   KC_P0,   _______, \
       _______, _______, _______, _______, _______, _______,                   KC_PMNS, KC_P4,   KC_P5,   KC_P6,   KC_PAST, _______, \
       _______, _______, _______, _______, _______, _______,                   KC_PEQL, KC_P1,   KC_P2,   KC_P3,   KC_PSLS, _______, \
@@ -288,7 +287,7 @@ void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *s
 #define L_WALK 2
 #define L_SELECT 4
 #define L_WALK_SELECT 6
-#define L_NUMPAD 8
+#define L_NUM 8
 #define L_LOWER 16
 #define L_RAISE 32
 #define L_ADJUST 65536
@@ -329,7 +328,7 @@ void render_status(struct CharacterMatrix *matrix) {
     case L_WALK_SELECT:
       matrix_write_P(matrix, PSTR("Text Select"));
       break;
-    case L_NUMPAD:
+    case L_NUM:
       matrix_write_P(matrix, PSTR("Numpad"));
       break;
     case L_LOWER:
