@@ -17,7 +17,7 @@ extern keymap_config_t keymap_config;
 extern rgblight_config_t rgblight_config;
 #endif
 
-void dance_l_finished(qk_tap_dance_state_t *state, void *user_data) {
+void dance_left_finished(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     register_code(KC_LSFT);
     register_code(KC_9);
@@ -29,7 +29,7 @@ void dance_l_finished(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void dance_l_reset(qk_tap_dance_state_t *state, void *user_data) {
+void dance_left_reset(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     unregister_code(KC_LSFT);
     unregister_code(KC_9);
@@ -41,7 +41,7 @@ void dance_l_reset(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void dance_r_finished(qk_tap_dance_state_t *state, void *user_data) {
+void dance_right_finished(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     register_code(KC_LSFT);
     register_code(KC_0);
@@ -53,7 +53,7 @@ void dance_r_finished(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void dance_r_reset(qk_tap_dance_state_t *state, void *user_data) {
+void dance_right_reset(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     unregister_code(KC_LSFT);
     unregister_code(KC_0);
@@ -65,7 +65,7 @@ void dance_r_reset(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void dance_lr_finished(qk_tap_dance_state_t *state, void *user_data) {
+void dance_both_finished(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     register_code(KC_LSFT);
     register_code(KC_9);
@@ -80,7 +80,7 @@ void dance_lr_finished(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void dance_lr_reset(qk_tap_dance_state_t *state, void *user_data) {
+void dance_both_reset(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     unregister_code(KC_LSFT);
     unregister_code(KC_9);
@@ -102,9 +102,9 @@ enum {
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_LEFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_l_finished, dance_l_reset),
-  [TD_RIGHT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_r_finished, dance_r_reset),
-  [TD_BOTH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_lr_finished, dance_lr_reset),
+  [TD_LEFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_left_finished, dance_left_reset),
+  [TD_RIGHT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_right_finished, dance_right_reset),
+  [TD_BOTH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_both_finished, dance_both_reset),
 };
 
 extern uint8_t is_master;
