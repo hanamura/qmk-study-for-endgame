@@ -110,8 +110,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 extern uint8_t is_master;
 
 #define _QWERTY 0
-#define _TEXT_WALK 1
-#define _TEXT_SELECT 2
+#define _WALK 1
+#define _SELECT 2
 #define _NUMPAD 3
 #define _LOWER 4
 #define _RAISE 5
@@ -151,8 +151,8 @@ enum custom_keycodes {
 
 // layers
 #define NUMPAD_F LT(_NUMPAD,KC_F)
-#define TEXT_WALK_D LT(_TEXT_WALK,KC_D)
-#define TEXT_SELECT_S LT(_TEXT_SELECT,KC_S)
+#define WALK_D LT(_WALK,KC_D)
+#define SELECT_S LT(_SELECT,KC_S)
 
 // utils
 #define _______ KC_TRNS
@@ -161,19 +161,19 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = KEYMAP( \
       KC_TAB,  KC_Q,    KC_W,          KC_E,        KC_R,     KC_T,                   KC_Y,  KC_U,                  KC_I,          KC_O,    KC_P,    KC_BSPC,             \
-      CTL_ESC, KC_A,    TEXT_SELECT_S, TEXT_WALK_D, NUMPAD_F, KC_G,                   KC_H,  KC_J,                  KC_K,          KC_L,    KC_SCLN, KC_ENT,              \
+      CTL_ESC, KC_A,    SELECT_S, WALK_D, NUMPAD_F, KC_G,                   KC_H,  KC_J,                  KC_K,          KC_L,    KC_SCLN, KC_ENT,              \
       SFT_TAB, KC_Z,    KC_X,          KC_C,        KC_V,     KC_B,                   KC_N,  KC_M,                  KC_COMM,       KC_DOT,  KC_SLSH, MT(MOD_RSFT,KC_TAB), \
       M_CAG,   _______, _______,       KC_LALT,     CMD_EN,   LOWER, KC_LSFT, KC_SPC, RAISE, MT(MOD_RGUI,KC_LANG1), LGUI(KC_LALT), _______, _______, _______              \
       ),
 
-  [_TEXT_WALK] = KEYMAP( \
+  [_WALK] = KEYMAP( \
       _______, _______, _______, _______, _______, XXXXXXX,                         LALT(KC_LEFT), LGUI(KC_DOWN), LGUI(KC_UP), LALT(KC_RGHT), XXXXXXX,       _______, \
       _______, _______, _______, _______, _______, LGUI(KC_LEFT),                   KC_LEFT,       KC_DOWN,       KC_UP,       KC_RGHT,       LGUI(KC_RGHT), _______, \
       _______, _______, _______, _______, _______, LGUI(KC_Z),                      LCTL(KC_K),    LGUI(KC_X),    LGUI(KC_C),  LGUI(KC_V),    XXXXXXX,       _______, \
       _______, _______, _______, _______, _______, _______,       _______, _______, _______,       _______,       _______,     _______,       _______,       _______  \
       ),
 
-  [_TEXT_SELECT] = KEYMAP( \
+  [_SELECT] = KEYMAP( \
       _______, _______, _______, _______, _______, XXXXXXX,                               LSFT(LALT(KC_LEFT)), LSFT(LGUI(KC_DOWN)), LSFT(LGUI(KC_UP)), LSFT(LALT(KC_RGHT)), XXXXXXX,             _______, \
       _______, _______, _______, _______, _______, LSFT(LGUI(KC_LEFT)),                   LSFT(KC_LEFT),       LSFT(KC_DOWN),       LSFT(KC_UP),       LSFT(KC_RGHT),       LSFT(LGUI(KC_RGHT)), _______, \
       _______, _______, _______, _______, _______, LGUI(KC_Z),                            LCTL(KC_K),          LGUI(KC_X),          LGUI(KC_C),        LGUI(KC_V),          XXXXXXX,             _______, \
@@ -313,9 +313,9 @@ void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *s
 }
 
 #define L_BASE 0
-#define L_TEXT_WALK 2
-#define L_TEXT_SELECT 4
-#define L_TEXT_WALK_SELECT 6
+#define L_WALK 2
+#define L_SELECT 4
+#define L_WALK_SELECT 6
 #define L_NUMPAD 8
 #define L_LOWER 16
 #define L_RAISE 32
@@ -350,11 +350,11 @@ void render_status(struct CharacterMatrix *matrix) {
     case L_BASE:
       matrix_write_P(matrix, PSTR("Qwerty"));
       break;
-    case L_TEXT_WALK:
+    case L_WALK:
       matrix_write_P(matrix, PSTR("Text Walk"));
       break;
-    case L_TEXT_SELECT:
-    case L_TEXT_WALK_SELECT:
+    case L_SELECT:
+    case L_WALK_SELECT:
       matrix_write_P(matrix, PSTR("Text Select"));
       break;
     case L_NUMPAD:
