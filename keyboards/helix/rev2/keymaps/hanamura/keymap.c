@@ -96,15 +96,15 @@ void dance_lr_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 enum {
-  TD_L = 0,
-  TD_R,
-  TD_LR
+  TD_LEFT = 0,
+  TD_RIGHT,
+  TD_BOTH
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_L] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_l_finished, dance_l_reset),
-  [TD_R] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_r_finished, dance_r_reset),
-  [TD_LR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_lr_finished, dance_lr_reset),
+  [TD_LEFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_l_finished, dance_l_reset),
+  [TD_RIGHT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_r_finished, dance_r_reset),
+  [TD_BOTH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_lr_finished, dance_lr_reset),
 };
 
 extern uint8_t is_master;
@@ -189,14 +189,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = KEYMAP( \
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), _______, _______, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_LEFT), TD(TD_RIGHT), TD(TD_BOTH), _______, _______, \
       _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
       ),
 
   [_RAISE] = KEYMAP( \
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
-      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_L), TD(TD_R), TD(TD_LR), _______, _______, \
+      _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_LEFT), TD(TD_RIGHT), TD(TD_BOTH), _______, _______, \
       _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
       ),
