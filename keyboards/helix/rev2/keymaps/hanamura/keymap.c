@@ -126,34 +126,6 @@ enum custom_keycodes {
   RGBRST
 };
 
-// mod taps
-#define CMD_EN MT(MOD_LGUI,KC_LANG2)
-#define CTL_ESC MT(MOD_LCTL,KC_ESC)
-#define SFT_TAB MT(MOD_LSFT,KC_TAB)
-
-// mod
-#define M_CAG LCTL(LALT(KC_LGUI))
-
-// characters
-#define C_ELPS LALT(KC_SCLN)
-#define C_TRUDQ LALT(KC_LBRC)
-#define C_TRUSQ LALT(KC_RBRC)
-
-// macos focuses
-#define FO_MENU LCTL(KC_F2)
-#define FO_TOOL LCTL(KC_F5)
-
-// prev / next actions
-#define TAB_PREV LGUI(LSFT(KC_LBRC))
-#define TAB_NEXT LGUI(LSFT(KC_RBRC))
-#define PANE_PREV LGUI(KC_LBRC)
-#define PANE_NEXT LGUI(KC_RBRC)
-
-// layers
-#define NUMPAD_F LT(_NUMPAD,KC_F)
-#define WALK_D LT(_WALK,KC_D)
-#define SELECT_S LT(_SELECT,KC_S)
-
 // utils
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
@@ -161,9 +133,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = KEYMAP( \
       KC_TAB,  KC_Q,    KC_W,          KC_E,        KC_R,     KC_T,                   KC_Y,  KC_U,                  KC_I,          KC_O,    KC_P,    KC_BSPC,             \
-      CTL_ESC, KC_A,    SELECT_S, WALK_D, NUMPAD_F, KC_G,                   KC_H,  KC_J,                  KC_K,          KC_L,    KC_SCLN, KC_ENT,              \
-      SFT_TAB, KC_Z,    KC_X,          KC_C,        KC_V,     KC_B,                   KC_N,  KC_M,                  KC_COMM,       KC_DOT,  KC_SLSH, MT(MOD_RSFT,KC_TAB), \
-      M_CAG,   _______, _______,       KC_LALT,     CMD_EN,   LOWER, KC_LSFT, KC_SPC, RAISE, MT(MOD_RGUI,KC_LANG1), LGUI(KC_LALT), _______, _______, _______              \
+      MT(MOD_LCTL,KC_ESC), KC_A,    LT(_SELECT,KC_S), LT(_WALK,KC_D), LT(_NUMPAD,KC_F), KC_G,                   KC_H,  KC_J,                  KC_K,          KC_L,    KC_SCLN, KC_ENT,              \
+      MT(MOD_LSFT,KC_TAB), KC_Z,    KC_X,          KC_C,        KC_V,     KC_B,                   KC_N,  KC_M,                  KC_COMM,       KC_DOT,  KC_SLSH, MT(MOD_RSFT,KC_TAB), \
+      LCTL(LALT(KC_LGUI)),   _______, _______,       KC_LALT,     MT(MOD_LGUI,KC_LANG2),   LOWER, KC_LSFT, KC_SPC, RAISE, MT(MOD_RGUI,KC_LANG1), LGUI(KC_LALT), _______, _______, _______              \
       ),
 
   [_WALK] = KEYMAP( \
@@ -190,14 +162,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = KEYMAP( \
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
       _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_LEFT), TD(TD_RIGHT), TD(TD_BOTH), _______, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
+      _______, _______, _______, LALT(KC_LBRC), LALT(KC_RBRC), KC_PLUS,                   KC_EQL,  LALT(KC_SCLN),   KC_PIPE,  _______,   _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
       ),
 
   [_RAISE] = KEYMAP( \
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,  _______,   KC_BSLS, _______, \
       _______, KC_TILD, KC_GRV,  KC_DQT,  KC_QUOT, KC_UNDS,                   KC_MINS, TD(TD_LEFT), TD(TD_RIGHT), TD(TD_BOTH), _______, _______, \
-      _______, _______, _______, C_TRUDQ, C_TRUSQ, KC_PLUS,                   KC_EQL,  C_ELPS,   KC_PIPE,  _______,   _______, _______, \
+      _______, _______, _______, LALT(KC_LBRC), LALT(KC_RBRC), KC_PLUS,                   KC_EQL,  LALT(KC_SCLN),   KC_PIPE,  _______,   _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______,   _______, _______  \
       ),
 
@@ -209,9 +181,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_ADJUST] = KEYMAP( \
-      _______, _______, _______, KC_PGUP, KC_VOLU, FO_MENU,                     FO_TOOL,   BACKLIT, LGUI(LSFT(LCTL(KC_4))), _______, _______, _______, \
-      _______, _______, _______, KC_PGDN, KC_VOLD, TAB_PREV,                    TAB_NEXT,  QWERTY,  LGUI(LSFT(KC_4)),       _______, _______, _______, \
-      _______, RESET,   _______, _______, _______, PANE_PREV,                   PANE_NEXT, _______, LGUI(LSFT(KC_3)),       _______, _______, _______, \
+      _______, _______, _______, KC_PGUP, KC_VOLU, LCTL(KC_F2),                     LCTL(KC_F5),   BACKLIT, LGUI(LSFT(LCTL(KC_4))), _______, _______, _______, \
+      _______, _______, _______, KC_PGDN, KC_VOLD, LGUI(LSFT(KC_LBRC)),                    LGUI(LSFT(KC_RBRC)),  QWERTY,  LGUI(LSFT(KC_4)),       _______, _______, _______, \
+      _______, RESET,   _______, _______, _______, LGUI(KC_LBRC),                   LGUI(KC_RBRC), _______, LGUI(LSFT(KC_3)),       _______, _______, _______, \
       _______, _______, _______, _______, _______, _______,   _______, _______, _______,   _______, _______,                _______, _______, _______  \
       )
 };
