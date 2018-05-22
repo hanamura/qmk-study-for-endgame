@@ -159,14 +159,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_LOWER] = KEYMAP( \
-      _______, KC_EXLM, KC_AT,   KC_HASH,       KC_DLR,        KC_PERC,                   KC_CIRC, KC_AMPR,       KC_ASTR,      _______,     KC_BSLS, _______, \
+      _______, KC_EXLM, KC_AT,   KC_HASH,       KC_DLR,        KC_PERC,                   KC_CIRC, KC_AMPR,       KC_ASTR,      KC_BSLS,     _______, _______, \
       _______, KC_TILD, KC_GRV,  KC_DQT,        KC_QUOT,       KC_UNDS,                   KC_MINS, TD(TD_LEFT),   TD(TD_RIGHT), TD(TD_BOTH), _______, _______, \
       _______, _______, _______, LALT(KC_LBRC), LALT(KC_RBRC), KC_PLUS,                   KC_EQL,  LALT(KC_SCLN), KC_PIPE,      _______,     _______, _______, \
       _______, _______, _______, _______,       _______,       _______, _______, _______, _______, _______,       _______,      _______,     _______, _______  \
       ),
 
   [_RAISE] = KEYMAP( \
-      _______, KC_EXLM, KC_AT,   KC_HASH,       KC_DLR,        KC_PERC,                   KC_CIRC, KC_AMPR,       KC_ASTR,      _______,     KC_BSLS, _______, \
+      _______, KC_EXLM, KC_AT,   KC_HASH,       KC_DLR,        KC_PERC,                   KC_CIRC, KC_AMPR,       KC_ASTR,      KC_BSLS,     _______, _______, \
       _______, KC_TILD, KC_GRV,  KC_DQT,        KC_QUOT,       KC_UNDS,                   KC_MINS, TD(TD_LEFT),   TD(TD_RIGHT), TD(TD_BOTH), _______, _______, \
       _______, _______, _______, LALT(KC_LBRC), LALT(KC_RBRC), KC_PLUS,                   KC_EQL,  LALT(KC_SCLN), KC_PIPE,      _______,     _______, _______, \
       _______, _______, _______, _______,       _______,       _______, _______, _______, _______, _______,       _______,      _______,     _______, _______  \
