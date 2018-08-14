@@ -4,6 +4,8 @@
 
 #define MASTER_LEFT
 
+#define TAPPING_TERM 150
+
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 12
