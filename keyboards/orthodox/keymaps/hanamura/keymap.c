@@ -82,16 +82,46 @@ void dance_both_reset(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
+void dance_mod_finished(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    register_code(KC_LGUI);
+    register_code(KC_LALT);
+  } else if (state->count == 2) {
+    register_code(KC_LGUI);
+    register_code(KC_LSFT);
+  } else {
+    register_code(KC_LGUI);
+    register_code(KC_LALT);
+    register_code(KC_LSFT);
+  }
+}
+
+void dance_mod_reset(qk_tap_dance_state_t *state, void *user_data) {
+  if (state->count == 1) {
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LALT);
+  } else if (state->count == 2) {
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LSFT);
+  } else {
+    unregister_code(KC_LGUI);
+    unregister_code(KC_LALT);
+    unregister_code(KC_LSFT);
+  }
+}
+
 enum {
   TD_LEFT = 0,
   TD_RIGHT,
-  TD_BOTH
+  TD_BOTH,
+  TD_MOD
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_LEFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_left_finished, dance_left_reset),
   [TD_RIGHT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_right_finished, dance_right_reset),
   [TD_BOTH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_both_finished, dance_both_reset),
+  [TD_MOD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_mod_finished, dance_mod_reset),
 };
 
 #define _QWERTY 0
@@ -116,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
       KC_TAB,              KC_Q, KC_W,             KC_E,           KC_R,          KC_T,                                                                                   KC_Y, KC_U, KC_I,    KC_O,   KC_P,    KC_BSPC,             \
       MT(MOD_LCTL,KC_ESC), KC_A, LT(_SELECT,KC_S), LT(_WALK,KC_D), LT(_NUM,KC_F), KC_G,                        KC_LALT, _______, _______, KC_LSFT,                        KC_H, KC_J, KC_K,    KC_L,   KC_SCLN, MT(MOD_LCTL,KC_ENT), \
-      MT(MOD_LSFT,KC_TAB), KC_Z, LCAG_T(KC_X),     KC_C,           KC_V,          KC_B, MT(MOD_LGUI,KC_LANG2), LOWER,   KC_ENT,  KC_SPC,  RAISE,   MT(MOD_RGUI,KC_LANG1), KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, MT(MOD_LSFT,KC_TAB)  \
+      MT(MOD_LSFT,KC_TAB), KC_Z, LCAG_T(KC_X),     KC_C,           KC_V,          KC_B, MT(MOD_LGUI,KC_LANG2), LOWER,   TD(TD_MOD),  KC_SPC,  RAISE,   MT(MOD_RGUI,KC_LANG1), KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, MT(MOD_LSFT,KC_TAB)  \
       ),
 
   [_WALK] = LAYOUT( \
