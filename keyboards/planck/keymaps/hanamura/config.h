@@ -11,16 +11,8 @@
                                 }
 #endif
 
-#define MUSIC_MASK (keycode != KC_NO)
-
 #define MIDI_BASIC
+#define ENCODER_RESOLUTION 4
+#define TAPPING_TERM 200
 
 #endif
-
-#define MOUSEKEY_DELAY 0
-#define MOUSEKEY_DELTA 5
-#define MOUSEKEY_INTERVAL 0
-#define MOUSEKEY_MAX_SPEED 3
-#define MOUSEKEY_TIME_TO_MAX 120
-
-#define TAPPING_TERM 200
