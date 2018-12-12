@@ -143,10 +143,10 @@ enum planck_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = {
-    {KC_TAB,              KC_Q,     KC_W,             KC_E,                  KC_R,          KC_T,   KC_Y,   KC_U,       KC_I,                  KC_O,    KC_P,    KC_BSPC},
-    {MT(MOD_LCTL,KC_ESC), KC_A,     LT(_SELECT,KC_S), LT(_WALK,KC_D),        LT(_NUM,KC_F), KC_G,   KC_H,   KC_J,       KC_K,                  KC_L,    KC_SCLN, MT(MOD_LCTL,KC_ENT)},
-    {MT(MOD_LSFT,KC_TAB), KC_Z,     LCAG_T(KC_X),     KC_C,                  KC_V,          KC_B,   KC_N,   KC_M,       KC_COMM,               KC_DOT,  KC_SLSH, MT(MOD_LSFT,KC_TAB)},
-    {RGB_TOG,             RGB_MOD,  KC_LALT,          MT(MOD_LGUI,KC_LANG2), MO(_LOWER),    KC_SPC, KC_SPC, MO(_RAISE), MT(MOD_RGUI,KC_LANG1), KC_RALT, KC_LEFT, KC_RGHT}
+    {KC_TAB,              KC_Q,     KC_W,             KC_E,                  KC_R,          KC_T,          KC_Y,   KC_U,       KC_I,                  KC_O,    KC_P,    KC_BSPC},
+    {MT(MOD_LCTL,KC_ESC), KC_A,     LT(_SELECT,KC_S), LT(_WALK,KC_D),        LT(_NUM,KC_F), KC_G,          KC_H,   KC_J,       KC_K,                  KC_L,    KC_SCLN, MT(MOD_LCTL,KC_ENT)},
+    {MT(MOD_LSFT,KC_TAB), KC_Z,     LCAG_T(KC_X),     KC_C,                  KC_V,          KC_B,          KC_N,   KC_M,       KC_COMM,               KC_DOT,  KC_SLSH, MT(MOD_LSFT,KC_TAB)},
+    {RGB_TOG,             RGB_MOD,  KC_LALT,          MT(MOD_LGUI,KC_LANG2), MO(_LOWER),    LGUI(KC_LALT), KC_SPC, MO(_RAISE), MT(MOD_RGUI,KC_LANG1), KC_RALT, KC_LEFT, KC_RGHT}
   },
 
   [_WALK] = {
