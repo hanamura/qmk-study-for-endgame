@@ -13,13 +13,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "panc60.h"
 
-#include <avr/pgmspace.h>
-#include "action_layer.h"
-#include "i2c.h"
-#include "quantum.h"
+void backlight_init_ports(void) {
+	setPinOutput(D0);
+	setPinOutput(D1);
+	setPinOutput(D4);
+	setPinOutput(D6);
 
-__attribute__ ((weak))
-void matrix_scan_user(void) {
+	writePinLow(D0);
+	writePinLow(D1);
+	writePinLow(D4);
+	writePinLow(D6);
+}
+
+void backlight_set(uint8_t level) {
+	if (level == 0) {
+		// Turn out the lights
+		writePinLow(D0);
+		writePinLow(D1);
+		writePinLow(D4);
+		writePinLow(D6);
+	} else {
+		// Turn on the lights
+		writePinHigh(D0);
+		writePinHigh(D1);
+		writePinHigh(D4);
+		writePinHigh(D6);
+	}
 }
